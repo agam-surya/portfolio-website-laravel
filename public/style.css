@@ -13,7 +13,7 @@
 }
 
 :root {
-  --footer-color : #ebebeb;
+  --footer-color: #ebebeb;
   --main-color: #033a80;
   --bg-color: #fff;
   --text-color: #0f0c27;
@@ -335,13 +335,54 @@ header.shadow {
 
 .portfolio-img img {
   width: 100%;
+  height: auto;
   display: block;
+}
+
+.portfolio-info h1 {
+  color: black;
+  text-transform: uppercase;
+}
+
+.portfolio-info p {
+  color: black;
+  font-size: small;
+  text-overflow: ellipsis;
+}
+
+.portfolio-info a {
+  font-size: medium;
+  text-decoration: none;
+  color: var(--main-color);
+}
+
+
+.portfolio-img .portfolio-info {
+  justify-content: space-between;
+  padding: 20px;
+  z-index: 3;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, rgba(0, 176, 155, 0.3), rgba(150, 201, 61, 1));
+  border-radius: 0.5rem;
+  opacity: 0;
+  position: relative;
+  transition: 0.5s all;
 }
 
 /* image hover */
 
 .portfolio-img img:hover {
   transform: scale(1.1);
+  transition: 1s;
+}
+
+.portfolio-img:hover .portfolio-info {
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-88%);
   transition: 1s;
 }
 
@@ -396,7 +437,7 @@ form textarea {
 }
 
 .footer h2 {
-  color: black;
+  color: var(--text-color);
   font-size: 1.6rem;
   margin-bottom: 20px;
 }
@@ -462,6 +503,7 @@ body.active {
 
   header {
     padding: 11px 4%;
+
   }
 
   #menu-icon {

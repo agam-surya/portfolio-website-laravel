@@ -38,7 +38,7 @@
 
   <section class="home" id="home">
     <div class="social">
-      <a href="#"><i class='bx bxl-github'></i></a>
+      <a href="https://github.com/agam-surya" target="_blank"><i class='bx bxl-github'></i></a>
       <a href="#"><i class='bx bxl-facebook'></i></a>
       <a href="#"><i class='bx bxl-linkedin'></i></a>
     </div>
@@ -71,13 +71,13 @@
             voluptatem,natus repudiandae quo ipsa placeat suscipit sed consequatur!</p>
           <div class="information">
             <div class="info-box">
-              <i class="bx bxs-user">Agam Surya Armanda</i>
+              <i class="bx bxs-user"> Agam Surya Armanda</i>
             </div>
             <div class="info-box">
-              <i class="bx bxs-phone">1234567890</i>
+              <i class="bx bxs-phone"> 1234567890</i>
             </div>
             <div class="info-box">
-              <i class="bx bxs-envelope">mirzahaqiqi04@gmail.com</i>
+              <i class="bx bxs-envelope"> mirzahaqiqi04@gmail.com</i>
             </div>
             <a href="#" class="btn">Download CV</a>
           </div>
@@ -105,27 +105,6 @@
             <div class="percent-bar" name="skill-bar"></div>
           </div>
           @endforeach
-          <!-- box 2 -->
-          <!-- <div class="bars-box">
-            <h3>CSS</h3>
-            <span>70%</span>
-            <div class="light-bar"></div>
-            <div class="percent-bar css-bar"></div>
-          </div> -->
-          <!-- box 1 -->
-          <!-- <div class="bars-box">
-            <h3>JavaScript</h3>
-            <span>70%</span>
-            <div class="light-bar"></div>
-            <div class="percent-bar js-bar"></div>
-          </div> -->
-          <!-- box 1 -->
-          <!-- <div class="bars-box">
-            <h3>PHP</h3>
-            <span>70%</span>
-            <div class="light-bar"></div>
-            <div class="percent-bar php-bar"></div>
-          </div> -->
         </div>
         <div class="skills-img">
           <img src="assets/123.png" alt="">
@@ -173,18 +152,43 @@
     <div class="portfolio-content">
       <div class="portfolio-img">
         <img src="assets/blog-1.jpg" alt="">
+        <div class="portfolio-info">
+          <h1>asdasd</h1>
+          <p>lorem ipsum dolor amet sit asik asdk</p>
+          <a href="#">Read More..</a>
+        </div>
       </div>
       <div class="portfolio-img">
         <img src="assets/blog-2.jpg" alt="">
+        <div class="portfolio-info">
+          <h1>asdasd</h1>
+          <p>lorem ipsum dolor amet sit asik asdk</p>
+          <a href="#">Read More..</a>
+        </div>
       </div>
       <div class="portfolio-img">
         <img src="assets/blog-3.jpg" alt="">
+        <div class="portfolio-info">
+          <h1>asdasd</h1>
+          <p>lorem ipsum dolor amet sit asik asdk</p>
+          <a href="#">Read More..</a>
+        </div>
       </div>
       <div class="portfolio-img">
         <img src="assets/blog-4.jpg" alt="">
+        <div class="portfolio-info">
+          <h1>asdasd</h1>
+          <p>lorem ipsum dolor amet sit asik asdk</p>
+          <a href="#">Read More..</a>
+        </div>
       </div>
       <div class="portfolio-img">
         <img src="assets/blog-5.jpg" alt="">
+        <div class="portfolio-info">
+          <h1>asdasd</h1>
+          <p>lorem ipsum dolor amet sit asik asdk</p>
+          <a href="#">Read More..</a>
+        </div>
       </div>
     </div>
   </section>
@@ -211,7 +215,7 @@
     <h2>Agam Surya</h2>
     <div class="footer-social">
       <a href="#"><i class="bx bxl-facebook"></i></a>
-      <a href="#"><i class="bx bxl-github"></i></a>
+      <a href="https://github.com/agam-surya" target="_blank"><i class="bx bxl-github"></i></a>
       <a href="#"><i class="bx bxl-whatsapp"></i></a>
       <a href="#"><i class="bx bxl-instagram"></i></a>
       <a href="#"><i class="bx bxl-linkedin"></i></a>
