@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('skills', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->increments('id')->unique();
             $table->string('name');
-            $table->string('percent');
+            $table->string('type');
+            $table->string('image');
+            $table->string('description');
+            $table->string('github');
+            $table->date('published');
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('skills');
+        Schema::dropIfExists('projects');
     }
 };
