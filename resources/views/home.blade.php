@@ -30,9 +30,8 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#contact">Contact</a></li>
-
       <div class="bx bx-moon" id="darkmode"></div>
-      <li><a href="/login" class="btn" style="margin-left: 10px; color: white;">Login</a></li>
+      <div><a href="/login" class="btn" style="margin-left: 10px; color: white;">Login</a></div>
     </ul>
   </header>
 

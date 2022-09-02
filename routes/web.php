@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SkillsController;
 use App\Models\Skills;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SkillsController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,46 +21,53 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// DASHBOARD
+
 Route::get('/404', function () {
-  return view('404');
+  return view('dashboard/404');
 });
 
 Route::get('/blank', function () {
-  return view('blank');
+  return view('dashboard/blank');
 });
 Route::get('/buttons', function () {
-  return view('buttons');
+  return view('dashboard/buttons');
 });
 Route::get('/cards', function () {
-  return view('cards');
+  return view('dashboard/cards');
 });
 Route::get('/charts', function () {
-  return view('charts');
+  return view('dashboard/charts');
 });
+Route::get('/tables', function () {
+  return view('dashboard/tables');
+});
+Route::get('/utilities-animation', function () {
+  return view('dashboard/utilities-animation');
+});
+Route::get('/utilities-border', function () {
+  return view('dashboard/utilities-border');
+});
+Route::get('/utilities-color', function () {
+  return view('dashboard/utilities-color');
+});
+Route::get('/utilities-other', function () {
+  return view('dashboard/utilities-other');
+});
+
+
+
+
+
+
 Route::get('/forgot-password', function () {
   return view('forgot-password');
 });
-Route::get('/index', function () {
-  return view('index');
-});
-Route::get('/login', function () {
-  return view('login');
-});
-Route::get('/register', function () {
-  return view('register');
-});
-Route::get('/tables', function () {
-  return view('tables');
-});
-Route::get('/utilities-animation', function () {
-  return view('utilities-animation');
-});
-Route::get('/utilities-border', function () {
-  return view('utilities-border');
-});
-Route::get('/utilities-color', function () {
-  return view('utilities-color');
-});
-Route::get('/utilities-other', function () {
-  return view('utilities-other');
-});
+Route::resource('/register', RegisterController::class);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/dashboard', function () {
+  return view('dashboard.index');
+})->middleware('auth');
