@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Http\Requests\StoreProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -15,7 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        // 
+        $portfolio = Project::all();
+        return view('dashboard.pages.portfolio.index', compact('portfolio'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.pages.portfolio.add');
     }
 
     /**
@@ -34,9 +35,19 @@ class ProjectController extends Controller
      * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProjectRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|min:3',
+            'type' => 'required',
+            'image' => 'required|image|mimes:jpg,jpeg|max:10240',
+            'description' => 'required|min:3',
+            'github' => 'required'
+        ]);
+        $validatedData['image'] = $request->file('image')->store('image/project');
+        Project::create($validatedData);
+
+        return redirect('/portfolio')->with('success', 'Insert Data Berhasil');
     }
 
     /**
@@ -56,9 +67,12 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('dashboard.pages.portfolio.edit', [
+            'portfolio' => $project
+        ]);
     }
 
     /**
@@ -68,9 +82,26 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name' => 'required|min:3',
+            'type' => 'required',
+            'description' => 'required|min:3',
+            'github' => 'required',
+            'image' => 'image|mimes:jpg,jpeg|max:10240',
+        ];
+
+        $validatedData = $request->validate($rules);
+        if ($request->file('image')) {
+            $oldImage = Project::findOrFail($id);
+            Storage::delete($oldImage->image);
+            $validatedData['image'] = $request->file('image')->store('image/project');
+        }
+
+        Project::where('id', $id)->update($validatedData);
+
+        return redirect('/portfolio')->with('success', 'Data Berhasil Di Update');
     }
 
     /**
@@ -79,8 +110,12 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        Storage::delete($project->image);
+        Project::destroy($project->id);
+
+        return redirect('/portfolio')->with('success', 'Post Berhasil Dihapus');
     }
 }

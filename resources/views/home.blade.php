@@ -151,46 +151,16 @@
       <span>My recent Work</span>
     </div>
     <div class="portfolio-content">
+      @foreach($portfolio as $item)
       <div class="portfolio-img">
-        <img src="assets/blog-1.jpg" alt="">
+        <img src="{{asset('storage/'.$item->image)}}" alt="">
         <div class="portfolio-info">
-          <h1>asdasd</h1>
-          <p>lorem ipsum dolor amet sit asik asdk</p>
+          <h1>{{$item->name}}</h1>
+          <p>{{$item->description}}</p>
           <a href="#">Read More..</a>
         </div>
       </div>
-      <div class="portfolio-img">
-        <img src="assets/blog-2.jpg" alt="">
-        <div class="portfolio-info">
-          <h1>asdasd</h1>
-          <p>lorem ipsum dolor amet sit asik asdk</p>
-          <a href="#">Read More..</a>
-        </div>
-      </div>
-      <div class="portfolio-img">
-        <img src="assets/blog-3.jpg" alt="">
-        <div class="portfolio-info">
-          <h1>asdasd</h1>
-          <p>lorem ipsum dolor amet sit asik asdk</p>
-          <a href="#">Read More..</a>
-        </div>
-      </div>
-      <div class="portfolio-img">
-        <img src="assets/blog-4.jpg" alt="">
-        <div class="portfolio-info">
-          <h1>asdasd</h1>
-          <p>lorem ipsum dolor amet sit asik asdk</p>
-          <a href="#">Read More..</a>
-        </div>
-      </div>
-      <div class="portfolio-img">
-        <img src="assets/blog-5.jpg" alt="">
-        <div class="portfolio-info">
-          <h1>asdasd</h1>
-          <p>lorem ipsum dolor amet sit asik asdk</p>
-          <a href="#">Read More..</a>
-        </div>
-      </div>
+      @endforeach
     </div>
   </section>
 

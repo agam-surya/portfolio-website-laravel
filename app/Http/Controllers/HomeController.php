@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $skills = Skills::all();
-        $projects = Project::all();
-        return view('home', compact('skills', 'projects'));
+        $portfolio = Project::all();
+        return view('home', compact('skills', 'portfolio'));
     }
 }

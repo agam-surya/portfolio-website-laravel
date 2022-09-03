@@ -17,7 +17,12 @@ class ProjectFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->sentence(mt_rand(2, 4)),
+            'type' => 'programing',
+            'image' => 'image',
+            'description' => $this->faker->paragraph(),
+            'github' => 'github',
+            'published' => null,
         ];
     }
 }

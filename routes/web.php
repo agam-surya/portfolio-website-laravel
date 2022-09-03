@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,9 @@ use App\Http\Controllers\Admin\AdminController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // DASHBOARD
+
+Route::resource('/portfolio', ProjectController::class)->middleware('auth');
+
 
 Route::get('/404', function () {
   return view('dashboard/404');
