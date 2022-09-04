@@ -7,13 +7,14 @@
       <div class="col-md-12">
         <div class="card">
           @if(Session::Has('success'))
-          <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
+          <div class="alert alert-success alert-dismissible fade show col-lg-8" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
           </div>
           @endif
           <div class="card-header">
             <h3 class="card-title">
-              <a href="/portfolio/create" type="button" class="btn btn-primary btn-sm">
+              <a href="/skills/create" type="button" class="btn btn-primary btn-sm">
                 <i class="nav-icon fas fa-folder-plus"></i> &nbsp; Tambah Data
               </a>
             </h3>
@@ -24,23 +25,23 @@
               <thead>
                 <tr>
                   <th width="5%">No.</th>
-                  <th>Gambar</th>
-                  <th width="50%">Judul</th>
+                  <th>Nama</th>
+                  <th width="50%">Nilai</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($portfolio as $data)
+                @foreach ($skills as $data)
                 <tr>
                   <td>{{ $loop->iteration }}</td>
 
-                  <td><img src="{{asset('storage/'.$data->image)}}" width="80px" class="img-thumbnail"></td>
                   <td>{{ $data->name }}</td>
+                  <td>{{$data->percent}}</td>
                   <td>
-                    <form action="/portfolio/{{$data->id}}" method="post">
+                    <form action="/skills/{{$data->id}}" method="post">
                       @csrf
                       @method('delete')
-                      <a href="/portfolio/{{$data->id}}/edit" class="btn btn-success btn-sm"><i class="nav-icon fas fa-edit"></i>Edit
+                      <a href="/skills/{{$data->id}}/edit" class="btn btn-success btn-sm"><i class="nav-icon fas fa-edit"></i>Edit
                       </a>
 
                       <button class="btn btn-danger btn-sm"><i class="nav-icon fas fa-trash-alt"></i>Hapus</button>

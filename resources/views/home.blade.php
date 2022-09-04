@@ -153,7 +153,13 @@
     <div class="portfolio-content">
       @foreach($portfolio as $item)
       <div class="portfolio-img">
-        <img src="{{asset('storage/'.$item->image)}}" alt="">
+        <img src="
+        @if($item->image === null)
+        {{asset('storage/'.$item->image)}}
+        @else
+        {{'https://source.unsplash.com/400x500?ui-ux'}}
+        @endif
+        ">
         <div class="portfolio-info">
           <h1>{{$item->name}}</h1>
           <p>{{$item->description}}</p>

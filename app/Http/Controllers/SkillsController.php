@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Skills;
-use App\Http\Requests\StoreskillsRequest;
-use App\Http\Requests\UpdateskillsRequest;
+use Illuminate\Auth\Events\Validated;
+use Illuminate\Http\Request;
+
+use function PHPUnit\Framework\returnSelf;
 
 class SkillsController extends Controller
 {
@@ -16,7 +18,7 @@ class SkillsController extends Controller
     public function index()
     {
         $skills = Skills::all();
-        return view('home', compact('skills'));
+        return view('dashboard.pages.skills.index', compact('skills'));
     }
 
     /**
@@ -26,18 +28,24 @@ class SkillsController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.pages.skills.add');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreskillsRequest  $request
+     * @param  \App\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreskillsRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => "required|unique:skills|max:255",
+            'percent' => "required|integer|min:0|max:100",
+        ]);
+        Skills::create($validatedData);
+
+        return redirect('/skills')->with('success', "Insert Data Berhasil");
     }
 
     /**
@@ -57,21 +65,28 @@ class SkillsController extends Controller
      * @param  \App\Models\skills  $skills
      * @return \Illuminate\Http\Response
      */
-    public function edit(skills $skills)
+    public function edit($id)
     {
-        //
+        $skill = Skills::findOrFail($id);
+        return view('dashboard.pages.skills.edit', compact(['skill']));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateskillsRequest  $request
+     * @param  \App\Http\Requests $request
      * @param  \App\Models\skills  $skills
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateskillsRequest $request, skills $skills)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => "required|max:255",
+            'percent' => "required|integer|min:0|max:100",
+        ]);
+
+        Skills::where('id', $id)->update($validatedData);
+        return redirect('/skills')->with('success', 'Data Berhasil DiUpdate');
     }
 
     /**
@@ -80,8 +95,9 @@ class SkillsController extends Controller
      * @param  \App\Models\skills  $skills
      * @return \Illuminate\Http\Response
      */
-    public function destroy(skills $skills)
+    public function destroy($id)
     {
-        //
+        Skills::destroy($id);
+        return redirect('/skills')->with('success', 'Data Berhasil Dihapus');
     }
 }

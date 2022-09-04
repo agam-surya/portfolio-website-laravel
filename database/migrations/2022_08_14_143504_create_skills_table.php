@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id')->unique();
             $table->string('name');
             $table->string('percent');
+            $table->timestamps();
         });
     }
 

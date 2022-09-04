@@ -24,8 +24,12 @@ use App\Http\Controllers\ProjectController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // DASHBOARD
+Route::get('/dashboard', function () {
+  return view('dashboard.index');
+})->middleware('auth');
 
 Route::resource('/portfolio', ProjectController::class)->middleware('auth');
+Route::resource('/skills', SkillsController::class)->middleware('auth');
 
 
 Route::get('/404', function () {
@@ -72,6 +76,3 @@ Route::resource('/register', RegisterController::class);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
-Route::get('/dashboard', function () {
-  return view('dashboard.index');
-})->middleware('auth');
